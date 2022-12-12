@@ -1,0 +1,38 @@
+{{>header}}
+{{>navbar}}
+<section class="my-5 container">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>book name</th>
+        <th>book writer</th>
+        <th>Department</th>
+        <th>number of pages</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#if hasBook}}
+        {{#each books}}
+          <tr class="">
+            <td>{{id}}</td>
+            <td>{{bookName}}</td>
+            <td>{{bookWriter}}</td>
+            <td>{{department}}</td>
+            <td>{{numberOfPages}}</td>
+            <td>
+              <a href="/single/{{id}}" class="btn btn-primary mx-3">show</a>
+              <a href="/edit/{{id}}" class="btn btn-warning mx-3">Edit</a>
+              <a href="/delete/{{id}}" class="btn btn-danger mx-3">Delete</a>
+            </td>
+          </tr>
+        {{/each}}
+      {{else}}
+        <tr class="alert alert-danger">
+          <td colspan="3" class="text-center">no data yet</td>
+        </tr>
+      {{/if}}
+    </tbody>
+  </table>
+</section>
+{{>footer}}

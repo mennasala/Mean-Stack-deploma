@@ -1,0 +1,32 @@
+{{>header}}
+{{>navbar}}
+<section class="my-5 container">
+  {{#unless result}}
+    <div class="alert alert-danger">
+      Invalid Book id
+    </div>
+  {{else}}
+    <div class="row">
+      <div class="col-4">
+        id:
+        {{result.id}}
+      </div>
+      <div class="col-4">
+        bookName:
+        {{result.bookName}}
+      </div><div class="col-4">
+        bookWriter:
+        {{result.bookWriter}}
+      </div>
+      <div class="col-6">
+        department:
+        {{result.department}}
+      </div>
+      <div class="col-6">
+        numberOfPages:
+        {{result.numberOfPages}}
+      </div>
+    </div>
+  {{/unless}}
+</section>
+{{>footer}}
