@@ -1,0 +1,9 @@
+<!-- 2 way binding -->
+<!-- <input type="text" [(ngModel)]="inputVal" (input)="handleInput()" /> -->
+<!-- this is the same as the above line -->
+<input
+  type="text"
+  [(ngModel)]="inputVal"
+  (ngModelChange)="handleChangeInput($event)"
+/>
+{{ inputVal }}

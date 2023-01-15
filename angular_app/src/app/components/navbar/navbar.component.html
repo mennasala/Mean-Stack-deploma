@@ -1,0 +1,33 @@
+<!-- one way binding -->
+<h1>{{ name }}</h1>
+<input [textContent]="name" />
+<h2>{{ date }}</h2>
+<h3>{{ getFullName() }}</h3>
+<!-- interpolation -->
+<!-- <img src="{{ imagPath }}" alt="" /> -->
+<!-- property binding -->
+<!-- this line the same as the above -->
+<!-- <img [src]="imagPath" alt="" /> -->
+<input [type]="inputType" name="" id="" />
+
+<table class="table border">
+  <tr>
+    <th colspan="3" class="text-center">Full Name</th>
+  </tr>
+  <tr>
+    <td>MennaTullah</td>
+    <td>Salah</td>
+    <td>Selim</td>
+  </tr>
+</table>
+<p [innerHTML]="tag"></p>
+<p [innerText]="text"></p>
+
+<h1>{{ h1Text }}</h1>
+<!-- Event binding -->
+<button class="btn btn-primary" (click)="handleClick()">Change Mannon</button>
+<input type="text" (input)="handleInput($event)" />
+<!-- using Tempelate reference -->
+<input type="text" (change)="handleChange(userChangeInput)" #userChangeInput />
+{{ userChangeInput.value }}
+<input type="text" (keyup.enter)="handleInput($event)" />
