@@ -1,0 +1,82 @@
+<!-- *ngIf -->
+
+<!-- <div class="container">
+  <p>Card work</p>
+  <div *ngIf="ok">
+    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolore non ipsum
+    ratione quaerat veniam, culpa quis voluptatum totam eius voluptatem, neque
+    laudantium nisi rerum amet. Pariatur necessitatibus iste facere accusantium.
+  </div>
+  <button class="btn btn-primary" (click)="showText()">show Text</button>
+</div> -->
+
+<div class="container">
+  <p>second div works</p>
+  <div *ngIf="ok; then inCaseTrue; else inCaseFalse">Heloooooooooooooooo</div>
+  <ng-template #inCaseTrue>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi officia
+      quibusdam rerum perferendis temporibus magnam magni iste praesentium
+      tenetur aspernatur nulla illo aut voluptates, quos sed in aperiam quo.
+      Unde.
+    </p>
+    <button class="btn btn-primary" (click)="showText()">Hide Text</button>
+  </ng-template>
+  <ng-template #inCaseFalse>
+    <button class="btn btn-primary" (click)="showText()">Show Text</button>
+  </ng-template>
+</div>
+
+<!-- [ngSwich] -->
+<div class="container">
+  <div [ngSwitch]="num">
+    <div class="alert alert-danger" *ngSwitchCase="1">number = 1</div>
+    <div class="alert alert-danger" *ngSwitchCase="2">number = 2</div>
+    <div class="alert alert-danger" *ngSwitchCase="3">number = 3</div>
+    <div class="alert alert-primary" *ngSwitchDefault>Invalid Number</div>
+  </div>
+</div>
+
+<!-- nexted ng (multiple directives)-->
+<div class="container" [ngSwitch]="num">
+  <ng-container *ngFor="let item of arr; let i = index">
+    <div class="alert alert-primary" *ngSwitchCase="i">{{ item }}</div>
+  </ng-container>
+</div>
+
+<div class="container">
+  <div [ngSwitch]="monNum">
+    <div *ngFor="let m of month; let i = index">
+      <div class="alert alert-primary" *ngSwitchCase="i + 1">{{ m }}</div>
+    </div>
+  </div>
+</div>
+
+<!-- [ngClass] , [ngStyle]-->
+<div [ngClass]="[borderClass, bgClass]">
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, temporibus
+  ex. Quidem, iure, error ex quas voluptatem accusamus cupiditate eos esse
+  pariatur iste sequi repudiandae tempora nihil culpa. Itaque, nemo.
+</div>
+
+<div
+  [ngClass]="
+    ok
+      ? ['border border-danger', 'bg-danger']
+      : ['border border-primary', 'bg-info']
+  "
+>
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, temporibus
+  ex. Quidem, iure, error ex quas voluptatem accusamus cupiditate eos esse
+  pariatur iste sequi repudiandae tempora nihil culpa. Itaque, nemo.
+</div>
+
+<h1 [ngStyle]="{ color: 'red' }">Mannon</h1>
+<h1
+  [ngStyle]="{
+    color: ok ? 'blue' : 'green',
+    background: ok ? 'yellow' : 'red'
+  }"
+>
+  Salah
+</h1>

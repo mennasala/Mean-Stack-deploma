@@ -1,0 +1,7 @@
+<div class="container">
+  <h1>{{ curDate | date }}</h1>
+  <h2>{{ obj | json }}</h2>
+  <h2>{{ text | slice : 0 : 20 }}.........</h2>
+  <h3 *ngFor="let el of arr | slice : 1 : 3">{{ el }}</h3>
+  <h3>{{ name | convert : "Aya" : "Mohamed" : "Ahmed" : "Abdo" }}</h3>
+</div>
