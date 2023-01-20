@@ -1,0 +1,69 @@
+<form
+  class="row gy-3"
+  #registerForm="ngForm"
+  (ngSubmit)="handleSubmit(registerForm)"
+>
+  <div class="alert alert-primary">
+    <h4>values: {{ registerForm.value | json }}</h4>
+    <h4>valid: {{ registerForm.valid }}</h4>
+    <h4>invalid: {{ registerForm.invalid }}</h4>
+    <h4>touched: {{ registerForm.touched }}</h4>
+    <h4>submitted: {{ registerForm.submitted }}</h4>
+  </div>
+  <div class="col-6">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="First Name"
+      name="firstName"
+      required
+      minlength="3"
+      [(ngModel)]="model.firstName"
+      #firstName="ngModel"
+    />
+    <div
+      class="alert alert-danger"
+      *ngIf="registerForm.submitted && firstName.invalid"
+    >
+      <div *ngIf="firstName.errors?.['required']">First Name is required</div>
+      <div *ngIf="firstName.errors?.['minlength']">min length is 3</div>
+    </div>
+  </div>
+
+  <div class="col-6">
+    <input
+      type="email"
+      class="form-control"
+      placeholder="email"
+      name="email"
+      email
+      [(ngModel)]="model.email"
+    />
+  </div>
+
+  <!-- Minimum eight characters, at least one uppercase letter, one lowercase letter and one number -->
+  <div class="col-6">
+    <input
+      type="password"
+      class="form-control"
+      placeholder="password"
+      name="password"
+      required
+      pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$"
+      [(ngModel)]="model.password"
+      #password="ngModel"
+    />
+
+    <div
+      class="alert alert-danger"
+      *ngIf="password.invalid && (password.dirty || registerForm.submitted)"
+    >
+      <div *ngIf="password.errors?.['required']">password is required</div>
+      <div *ngIf="password.errors?.['pattern']">match the pattern</div>
+    </div>
+  </div>
+
+  <div class="col-12">
+    <button class="btn btn-primary">Submit</button>
+  </div>
+</form>
