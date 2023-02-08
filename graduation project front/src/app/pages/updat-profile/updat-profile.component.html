@@ -1,0 +1,80 @@
+<h1 style="text-align: center">Update Profile</h1>
+
+<form [formGroup]="updateForm" (ngSubmit)="onSubmit()">
+  <div class="container">
+    <div class="col-12 alert alert-danger" *ngIf="errorFlag">
+      {{ errorMsg }}
+    </div>
+
+    <div style="width: 80%">
+      <mat-card>
+        <mat-card-content>
+          <img
+            *ngIf="updateForm.get('image').value"
+            src="http://localhost:3000/{{ updateForm.get('image').value }}"
+          />
+          <ul>
+            <li>
+              <mat-progress-bar [value]="file.progress"></mat-progress-bar>
+            </li>
+          </ul>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button color="warn" (click)="onClick()">
+            <mat-icon>cloud_upload</mat-icon>
+          </button>
+        </mat-card-actions>
+      </mat-card>
+      <input
+        type="file"
+        #fileUpload
+        id="fileUpload"
+        name="fileUpload"
+        accept="image/*"
+        style="display: none"
+      />
+    </div>
+
+    <div class="container" style="width: 80%">
+      <mat-form-field>
+        <input matInput placeholder="First Name" formControlName="fName" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Last Name" formControlName="lName" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Email" formControlName="email" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Age" formControlName="age" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Date of birth"
+          formControlName="dOfBirth"
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="phone Number"
+          formControlName="phoneNumber"
+        />
+      </mat-form-field>
+    </div>
+    <button
+      class="btn btn-primary"
+      color="primary"
+      [disabled]="!updateForm.valid"
+      type="submit"
+    >
+      Update
+    </button>
+  </div>
+</form>

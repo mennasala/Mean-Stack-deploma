@@ -1,0 +1,18 @@
+<!-- http://localhost:3000/api/project/returnProjectImages/{{item._id}} -->
+<div class="row">
+  <div class="col-12 col-md-6 col-lg-4" *ngFor="let item of projects">
+    <div class="card">
+      <div class="card-body">
+        <img
+          src="http://localhost:3000/{{ item.images[0] }}"
+          class="card-img-top"
+        />
+        <h2>{{ item.projectName }}</h2>
+        <p>{{ item.projectType }}</p>
+        <button class="btn btn-primary" routerLink="/projects/{{ item._id }}">
+          Single Project
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

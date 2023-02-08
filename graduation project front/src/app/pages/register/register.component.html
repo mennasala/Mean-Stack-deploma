@@ -1,0 +1,71 @@
+<h1 style="text-align: center">Register Page</h1>
+
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  <div class="container">
+    <div class="col-12 alert alert-danger" *ngIf="errorFlag">
+      {{ errorMsg }}
+    </div>
+    <mat-form-field>
+      <input matInput placeholder="First Name" formControlName="fName" />
+      <mat-hint *ngIf="registerForm.controls.fName.errors"
+        >first name is required</mat-hint
+      >
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Last Name" formControlName="lName" />
+      <mat-hint *ngIf="registerForm.controls.lName.errors"
+        >last name is required</mat-hint
+      >
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Email" formControlName="email" />
+      <mat-hint *ngIf="registerForm.controls.email.errors"
+        >Email is required</mat-hint
+      >
+    </mat-form-field>
+
+    <mat-form-field>
+      <input
+        matInput
+        type="password"
+        placeholder="Password"
+        formControlName="password"
+      />
+      <mat-hint *ngIf="registerForm.controls.password.errors"
+        >Password is required</mat-hint
+      >
+    </mat-form-field>
+
+    <mat-form-field>
+      <input
+        matInput
+        type="password"
+        placeholder="Password COnfirmation"
+        formControlName="confirmPassword"
+      />
+      <mat-hint *ngIf="registerForm.controls.confirmPassword.errors"
+        >Passwords not matching</mat-hint
+      >
+    </mat-form-field>
+
+    <button
+      class="btn btn-primary"
+      color="primary"
+      [disabled]="!registerForm.valid"
+      type="submit"
+    >
+      Register
+    </button>
+  </div>
+</form>
+
+<h3 *ngIf="registerForm.invalid">Form contains following errors</h3>
+<small *ngIf="registerForm.get('password').hasError('passwordInvalid')"
+  >Password is not containing a number</small
+>
+<br />
+<small *ngIf="registerForm.hasError('passwordsNotMatching')"
+  >Passwords not matching</small
+>

@@ -1,0 +1,73 @@
+<!-- Reactive Form  -->
+<h1 style="text-align: center">Login Page</h1>
+<div class="container">
+  <div class="col-12 alert alert-danger" *ngIf="errorFlag">
+    {{ errorMsg }}
+  </div>
+
+  <form class="row gy-4" [formGroup]="loginForm" (ngSubmit)="handleSubmit()">
+    <mat-form-field>
+      <input matInput placeholder="Email" formControlName="email" />
+      <mat-hint *ngIf="loginForm.controls.email.errors"
+        >Email is required</mat-hint
+      >
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        type="password"
+        placeholder="Password"
+        formControlName="password"
+      />
+      <mat-hint *ngIf="loginForm.controls.password.errors"
+        >Password is required</mat-hint
+      >
+    </mat-form-field>
+    <button
+      class="btn btn-primary"
+      color="primary"
+      [disabled]="!loginForm.valid"
+      type="submit"
+    >
+      Login
+    </button>
+
+    <!-- <div class="col-12 col-lg-6">
+      <input
+        type="email"
+        class="form-control"
+        placeholder="Email"
+        formControlName="email"
+      />
+
+      <div class="alert alert-danger" *ngIf="submitted && userEmail?.invalid">
+        <div *ngIf="userEmail?.errors?.['required']">email is required</div>
+        <div *ngIf="userEmail?.errors?.['email']">Invalid Email</div>
+        <h5> errors  {{userEmail?.errors | json}} </h5>
+            <h5> touched  {{userEmail?.touched}} </h5>
+            <h5> valid {{userEmail?.valid}} </h5>
+            <h5> invalid  {{userEmail?.invalid}} </h5>
+            <h5> dirty  {{userEmail?.dirty}} </h5>
+      </div>
+    </div>
+    <div class="col-12 col-lg-6">
+      <input
+        type="password"
+        class="form-control"
+        placeholder="Password"
+        formControlName="password"
+      />
+      <div
+        class="alert alert-danger"
+        *ngIf="userData?.['password']?.invalid && submitted"
+      >
+        <div *ngIf="userData?.['password']?.errors?.['required']">
+          password is required
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
+      <button class="btn btn-primary">Login</button>
+    </div> -->
+  </form>
+</div>
