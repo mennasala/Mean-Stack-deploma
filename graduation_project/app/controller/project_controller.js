@@ -6,6 +6,9 @@ const fs = require("fs");
 class Project {
   static addProject = async (req, res) => {
     try {
+      if (req.user.roleName == "regular-user") {
+        throw new Error("Un Authorized to see this page");
+      }
       const newProject = new projectModel(req.body);
       await newProject.save();
       myHelper.sendResponse(res, 200, true, newProject, "success");
@@ -76,6 +79,9 @@ class Project {
 
   static uploadImage = async (req, res) => {
     try {
+      if (req.user.roleName == "regular-user") {
+        throw new Error("Un Authorized to see this page");
+      }
       if (!req.file) throw new Error("No file Uploaded");
       const extention = path.extname(req.file.originalname);
       const newImageName = "images/" + Date.now() + "image" + extention;

@@ -11,6 +11,7 @@ const buildingRoutes = require("../routes/building_routes");
 const projectRoutes = require("../routes/project_routes");
 const UnitRoutes = require("../routes/unit_routes");
 const BookingRoutes = require("../routes/booking_routes");
+const PDFRoutes = require("../routes/pdf_routes");
 
 app.use(cors());
 app.use(express.json());
@@ -22,6 +23,7 @@ app.use("/api/building/", buildingRoutes);
 app.use("/api/project/", projectRoutes);
 app.use("/api/unit/", UnitRoutes);
 app.use("/api/booking/", BookingRoutes);
+app.use("/api/pdf/", PDFRoutes);
 
 app.all("*", (req, res) => {
   res.status(404).send({

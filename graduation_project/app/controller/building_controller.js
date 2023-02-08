@@ -5,6 +5,9 @@ const fs = require("fs");
 class Building {
   static addBuilding = async (req, res) => {
     try {
+      if (req.user.roleName == "regular-user") {
+        throw new Error("Un Authorized to see this page");
+      }
       const newBuilding = new buildingModel(req.body);
       await newBuilding.save();
       myHelper.sendResponse(res, 200, true, newBuilding, "success");
@@ -67,6 +70,9 @@ class Building {
 
   static uploadImage = async (req, res) => {
     try {
+      if (req.user.roleName == "regular-user") {
+        throw new Error("Un Authorized to see this page");
+      }
       if (!req.file) throw new Error("No file Uploaded");
       const extention = path.extname(req.file.originalname);
       const newImageName = "images/" + Date.now() + "image" + extention;

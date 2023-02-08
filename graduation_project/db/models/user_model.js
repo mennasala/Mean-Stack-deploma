@@ -2,12 +2,18 @@ const mongoose = require("mongoose");
 const validator = require("validator");
 const bcryptjs = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const { float } = require("webidl-conversions");
+const { ObjectId } = require("bson");
 const userScema = mongoose.Schema(
   {
     roleId: {
       type: mongoose.Schema.Types.ObjectId,
-      required: true,
+      default: ObjectId("63d940572d4f3d1dc4f7ceda"),
       ref: "Role",
+    },
+    roleName: {
+      type: String,
+      default: "regular-user",
     },
     fName: {
       type: String,
@@ -65,9 +71,11 @@ const userScema = mongoose.Schema(
     },
     dOfBirth: {
       type: Date,
+      default: Date.now(),
     },
     phoneNumber: {
       type: String,
+      required: true,
       vaidate(value) {
         if (!validator.isMobilePhone(value, "ar-EG")) {
           throw new Error("invalid phone Numbers");
@@ -79,6 +87,28 @@ const userScema = mongoose.Schema(
         token: {
           type: String,
           required: true,
+        },
+      },
+    ],
+    boughts: [
+      {
+        unitId: {
+          type: mongoose.Schema.Types.ObjectId,
+        },
+        unitPrice: {
+          type: Number,
+        },
+        howMuchPaid: {
+          type: Number,
+        },
+        howMuchRemain: {
+          type: Number,
+        },
+        numberOfRemainingInstallments: {
+          type: Number,
+        },
+        amountToPay: {
+          type: Number,
         },
       },
     ],

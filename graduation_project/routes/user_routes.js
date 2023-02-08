@@ -6,7 +6,6 @@ const upload = require("../app/middleware/upload_middleware");
 router.post("/register", User.register);
 router.post("/login", User.login);
 
-router.get("/:id", auth, methodsAuth, User.all);
 router.post(
   "/uploadImageToProfile",
   auth,
@@ -14,9 +13,15 @@ router.post(
   User.uploadImage
 );
 
+router.get("/returnImageProfile", auth, User.returnImage);
 //profile
 router.get("/me", auth, User.profile);
 router.post("/logout", auth, User.logOut);
 //logout all devices
 router.post("/logoutAll", auth, User.logOutAll);
+//router.get("/:id", auth, methodsAuth, User.all);
+
+router.post("/editProfile", auth, User.editProfile);
+router.post("/payPremium", auth, User.payPremium);
+router.post("/buy/:id", auth, User.buy);
 module.exports = router;
